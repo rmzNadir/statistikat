@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import { useGetTopTracks } from '@api/useGetTopTracks';
+import { useTopTracks } from '@api/useTopTracks';
 import { AppLayout } from '@components/app-layout';
 
 export const TopTracks: FC = () => {
-  const { data: tracks = [] } = useGetTopTracks();
+  const { data: tracks = [] } = useTopTracks();
 
   return (
     <AppLayout>

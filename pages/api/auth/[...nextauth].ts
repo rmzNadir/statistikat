@@ -1,6 +1,7 @@
 import axios from 'axios';
-import NextAuth, { NextAuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
+import type { NextAuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
+import type { JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
 
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? '';
