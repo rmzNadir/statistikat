@@ -52,7 +52,6 @@ const refreshAccessToken = async (token: JWT): Promise<JWT> => {
 };
 
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXT_AUTH_SECRET,
   providers: [
     SpotifyProvider({
       clientId: SPOTIFY_CLIENT_ID,
@@ -62,6 +61,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt(res) {
       const { token, account, profile } = res;
