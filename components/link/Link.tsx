@@ -8,7 +8,7 @@ export interface LinkProps extends NextLinkProps {
 }
 
 export const Link: FC<LinkProps> = ({ children, noUnderline, ...props }) => (
-  <NextLink {...props}>
+  <NextLink {...props} passHref>
     <ChakraLink style={{ textDecoration: noUnderline ? 'none' : undefined }}>
       {children}
     </ChakraLink>

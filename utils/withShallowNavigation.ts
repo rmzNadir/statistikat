@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next';
 
 /** Allows tan-stack query's cache to persist between internal routes */
-export const withCSN =
+export const withShallowNavigation =
   (next: GetServerSideProps): GetServerSideProps =>
   async (ctx) => {
     const isCSN = ctx.req.url?.startsWith('/_next');

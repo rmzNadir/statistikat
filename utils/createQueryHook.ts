@@ -13,5 +13,10 @@ export const createQueryHook =
 
     return useQuery([queryName], () => fetchCB(session as Session), {
       enabled: Boolean(session),
+      // Prevent double fetch after initial page load while
+      // also having a sane default (30s) that (hopefully) won't
+      // mess with user flows as 30s is the min listen time for
+      // a song playback to be registered by spotify
+      staleTime: 1000 * 30,
     });
   };
