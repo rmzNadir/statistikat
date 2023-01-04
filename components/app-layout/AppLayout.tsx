@@ -24,7 +24,7 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   useEffect(() => {
     if (session?.error === 'RefreshAccessTokenError') {
       // Force sign in to hopefully resolve error
-      signIn();
+      signIn('spotify', { callbackUrl: '/' });
     }
   }, [session]);
 

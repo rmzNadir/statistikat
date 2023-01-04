@@ -20,7 +20,7 @@ export const createSSPQueryFetch: CreateSSPQueryFetch =
     if (!session) {
       return {
         redirect: {
-          destination: '/login',
+          destination: `/login?redirect=${ctx.resolvedUrl}`,
           permanent: false,
         },
       };

@@ -11,4 +11,5 @@ export default Top;
 
 export const getServerSideProps: GetServerSideProps = withShallowNavigation(
   createSSPQueryFetch('topTracks', getTopTracks),
+  { requireAuth: true },
 );

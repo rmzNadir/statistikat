@@ -14,7 +14,6 @@ export const HeaderActions = () => {
   const handleSignOut = async () => {
     try {
       const signOutData = await signOut({ redirect: false, callbackUrl: '/' });
-      localStorage.removeItem('refresh_token');
 
       router.push(signOutData.url);
     } catch (err) {
@@ -27,7 +26,11 @@ export const HeaderActions = () => {
       {!isMobile && <ThemeToggleButton />}
       {session && <Button>Profile</Button>}
       {session && <Button onClick={handleSignOut}>Logout</Button>}
-      {!session && <Button onClick={() => signIn()}>Login</Button>}
+      {!session && (
+        <Button onClick={() => signIn('spotify', { callbackUrl: '/' })}>
+          Login
+        </Button>
+      )}
     </HeaderActionsContainer>
   );
 };
