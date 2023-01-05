@@ -17,19 +17,21 @@ export const withShallowNavigation =
   async (ctx) => {
     const { requireAuth } = options;
 
-    const session = await unstable_getServerSession(
-      ctx.req,
-      ctx.res,
-      authOptions,
-    );
+    if (requireAuth) {
+      const session = await unstable_getServerSession(
+        ctx.req,
+        ctx.res,
+        authOptions,
+      );
 
-    if (requireAuth && !session) {
-      return {
-        redirect: {
-          destination: `/login?redirect=${ctx.resolvedUrl}`,
-          permanent: false,
-        },
-      };
+      if (!session) {
+        return {
+          redirect: {
+            destination: `/login?redirect=${ctx.resolvedUrl}`,
+            permanent: false,
+          },
+        };
+      }
     }
 
     const isCSN = ctx.req.url?.startsWith('/_next');
