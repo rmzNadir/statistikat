@@ -14,20 +14,16 @@ export const AppNavigation = () => {
   return (
     <Tabs align="center" index={indices[route] ?? Infinity}>
       <TabList>
-        <Link href="/tracks/top" passHref>
-          <Tab as="a" tabIndex={0}>
-            <Heading size="sm" as="h2">
-              Top Tracks
-            </Heading>
-          </Tab>
-        </Link>
-        <Link href="/artists/top" passHref>
-          <Tab as="a" tabIndex={0}>
-            <Heading size="sm" as="h2">
-              Top Artists
-            </Heading>
-          </Tab>
-        </Link>
+        <Tab as={Link} href="/tracks/top">
+          <Heading size="sm" as="h2">
+            Top Tracks
+          </Heading>
+        </Tab>
+        <Tab as={Link} href="/artists/top">
+          <Heading size="sm" as="h2">
+            Top Artists
+          </Heading>
+        </Tab>
       </TabList>
     </Tabs>
   );

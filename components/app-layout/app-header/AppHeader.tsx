@@ -15,7 +15,7 @@ export const AppHeader = () => {
   return (
     <Header id="app-header" style={{ backgroundColor }}>
       <HeaderContent>
-        <Link href="/" passHref noUnderline>
+        <Link href="/" noUnderline>
           <Heading as="h1">StatistiKat</Heading>
         </Link>
         {isMobile ? <HeaderDrawer /> : <HeaderActions />}
