@@ -19,7 +19,7 @@
       "@config/*": ["config/*"],
       "@components/*": ["components/*"],
       "@context/*": ["context/*"],
-      "@api/*": ["api/*"],
+      "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@views/*": ["views/*"]
     }

@@ -1,6 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
-
-import { getTopArtists } from '@api/useTopArtists';
+import { getTopArtists } from '@hooks/queries/useTopArtists';
 import { createSSPQueryFetch } from '@utils/createSSPQueryFetch';
 import { withShallowNavigation } from '@utils/withShallowNavigation';
 import { TopArtists } from '@views/artists/top/TopArtists';

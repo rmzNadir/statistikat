@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { useTopArtists } from '@api/useTopArtists';
 import { AppLayout } from '@components/app-layout';
+import { useTopArtists } from '@hooks/queries/useTopArtists';
 
 export const TopArtists: FC = () => {
   const { data: artists = [] } = useTopArtists();
