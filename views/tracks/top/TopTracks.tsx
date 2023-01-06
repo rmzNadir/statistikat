@@ -1,17 +1,20 @@
 import type { FC } from 'react';
 import { AppLayout } from '@components/app-layout';
 import { useTopTracks } from '@hooks/queries/useTopTracks';
+import { Card, Grid } from './styles';
 
 export const TopTracks: FC = () => {
   const { data: tracks = [] } = useTopTracks();
 
   return (
     <AppLayout>
-      {tracks.map((track) => {
-        const { name, uri } = track;
+      <Grid>
+        {tracks.map((track) => {
+          const { name, uri } = track;
 
-        return <div key={uri}>{name}</div>;
-      })}
+          return <Card key={uri}>{name}</Card>;
+        })}
+      </Grid>
     </AppLayout>
   );
 };

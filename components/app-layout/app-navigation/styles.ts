@@ -1,8 +1,6 @@
-import { TabList as ChakraTabList } from '@chakra-ui/react';
+import { Tab as ChakraTab } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-import { theme } from '@config/theme';
-
-export const TabList = styled(ChakraTabList)`
-  padding: ${theme.space[2]};
+export const Tab = styled(ChakraTab)`
+  padding: ${({ theme }) => theme.space[4]};
 `;

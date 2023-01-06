@@ -1,7 +1,7 @@
-import { Heading, Tab, Tabs } from '@chakra-ui/react';
+import { Heading, TabList, Tabs } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { TabList } from './styles';
+import { Tab } from './styles';
 
 const indices: Record<string, number> = {
   '/tracks/top': 0,

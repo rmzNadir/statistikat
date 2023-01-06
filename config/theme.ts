@@ -1,19 +1,19 @@
 import {
+  type Theme as baseTheme,
   extendTheme,
   withDefaultColorScheme,
-  type Theme,
 } from '@chakra-ui/react';
 
-const customTheme: Partial<Theme> = {
-  config: {
+export const theme = extendTheme(
+  {
     initialColorMode: 'dark',
     useSystemColorMode: false,
   },
-};
-
-export const theme = extendTheme(
   withDefaultColorScheme({
     colorScheme: 'purple',
   }),
-  customTheme,
-) as Theme;
+) as baseTheme;
+
+type Theme = typeof theme;
+
+export type { Theme };
