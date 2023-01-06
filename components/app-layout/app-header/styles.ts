@@ -1,38 +1,36 @@
 import styled from '@emotion/styled';
 
-import { theme } from '@config/theme';
-
 export const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;
   min-width: 0;
   position: relative;
-  z-index: ${theme.zIndices.modal + 1};
+  z-index: ${({ theme }) => theme.zIndices.modal + 1};
 `;
 
 export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: ${theme.space[5]};
+  gap: ${({ theme }) => theme.space[5]};
   width: 100%;
-  min-height: ${theme.space[20]};
+  min-height: ${({ theme }) => theme.space[20]};
   min-width: 0;
 
-  padding: ${theme.space[5]};
+  padding: ${({ theme }) => theme.space[5]};
 
-  @media (min-width: ${theme.breakpoints.md}) {
-    padding: ${theme.space[8]};
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.space[8]};
   }
 
   & h1 {
     line-height: 1;
     position: relative;
-    padding-left: ${theme.space[10]};
+    padding-left: ${({ theme }) => theme.space[10]};
 
-    @media (min-width: ${theme.breakpoints.md}) {
-      padding-left: ${theme.space[12]};
+    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      padding-left: ${({ theme }) => theme.space[12]};
     }
 
     &:before {

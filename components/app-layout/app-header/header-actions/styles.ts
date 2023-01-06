@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 
-import { theme } from '@config/theme';
-
 export const HeaderActionsContainer = styled.div`
   display: flex;
-  gap: ${theme.space[3]};
+  gap: ${({ theme }) => theme.space[3]};
 
-  @media (max-width: ${theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: column;
 
     & > * {
