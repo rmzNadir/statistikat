@@ -1,4 +1,5 @@
 import '@config/axios';
+import '@config/baseCSS.css';
 import { ChakraProvider, cookieStorageManagerSSR } from '@chakra-ui/react';
 import {
   Hydrate,

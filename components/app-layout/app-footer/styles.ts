@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const AppFooterContainer = styled.div`
+export const AppFooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
   gap: ${({ theme }) => theme.space[5]};

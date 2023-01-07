@@ -1,0 +1,35 @@
+html,
+body,
+#__next {
+  min-height: 100%;
+  height: 100%;
+}
+
+html {
+  --scrollbar-thumb-color: var(--chakra-colors-purple-500);
+  --scrollbar-thumb-hover-color: var(--chakra-colors-purple-600);
+}
+
+html[data-theme='dark'] {
+  --scrollbar-thumb-color: var(--chakra-colors-purple-200);
+  --scrollbar-thumb-hover-color: var(--chakra-colors-purple-300);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-color);
+}

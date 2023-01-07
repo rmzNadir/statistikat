@@ -1,11 +1,7 @@
 import type { NextPage } from 'next';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { useLayoutEffect } from 'react';
-
-const useSafeLayoutEffect =
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  typeof window === 'undefined' ? () => {} : useLayoutEffect;
+import { useSafeLayoutEffect } from '@hooks/useSafeLayoutEffect';
 
 const Login: NextPage = () => {
   const { query } = useRouter();
