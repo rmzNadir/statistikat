@@ -20,5 +20,7 @@ export const BaseCard = styled.div`
 `;
 
 export const CardImage = styled(NextImage)`
+  aspect-ratio: 1;
   border-radius: ${({ theme }) => theme.radii.md};
+  object-fit: cover;
 `;

@@ -15,7 +15,7 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
 
   const { images, name: albumName } = album;
 
-  const albumArt = images[1];
+  const albumArt = images[0];
 
   const secondaryTextColor = useColorModeValue('gray.900', 'gray.300');
 
@@ -24,8 +24,8 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
       <Card.Image
         src={albumArt.url}
         alt={`${albumName} album art`}
-        width={300}
-        height={300}
+        width={640}
+        height={640}
       />
       <div>
         <TruncatedText as="b" noOfLines={1}>

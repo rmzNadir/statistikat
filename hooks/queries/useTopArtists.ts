@@ -4,7 +4,7 @@ import { createQueryHook } from '@utils/createQueryHook';
 import type { Artist } from 'types/spotify';
 
 interface TopArtistsReponse {
-  items: Artist[];
+  items: Required<Artist>[];
 }
 
 export const getTopArtists = async (session: Session) => {
