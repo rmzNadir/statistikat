@@ -1,9 +1,9 @@
 import { useColorModeValue } from '@chakra-ui/react';
 import type { FC } from 'react';
 import React from 'react';
+import { Card } from '@components/card';
 import { TruncatedText } from '@components/TruncatedText';
 import type { Track } from 'types/spotify';
-import { Card, CardImage } from './styles';
 
 interface Props {
   track: Track;
@@ -21,14 +21,14 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
 
   return (
     <Card>
-      <CardImage
+      <Card.Image
         src={albumArt.url}
         alt={`${albumName} album art`}
         width={300}
         height={300}
       />
       <div>
-        <TruncatedText as="b" color="WindowText" noOfLines={1}>
+        <TruncatedText as="b" noOfLines={1}>
           {rank}. {name}
         </TruncatedText>
         <TruncatedText

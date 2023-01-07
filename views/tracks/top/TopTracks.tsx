@@ -1,6 +1,6 @@
 import type { FC } from 'react';
+import { Grid } from '@components/Common';
 import { useTopTracks } from '@hooks/queries/useTopTracks';
-import { Grid } from './styles';
 import { TrackCard } from './TrackCard';
 
 export const TopTracks: FC = () => {

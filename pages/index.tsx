@@ -2,8 +2,6 @@
 /* eslint-disable prettier/prettier */
 import type { NextPage } from 'next';
 
-import { AppLayout } from '@components/app-layout';
-
 const Home: NextPage = () => {
   const art = String.raw` 
  /\_/\
@@ -11,18 +9,16 @@ const Home: NextPage = () => {
  > ^ <`;
 
   return (
-    <AppLayout>
-      <div
-        style={{
-          width: '100%',
-          height: '60%',
-          display: 'grid',
-          placeItems: 'center',
-        }}
-      >
-        <pre>{art}</pre>
-      </div>
-    </AppLayout>
+    <div
+      style={{
+        width: '100%',
+        height: '60%',
+        display: 'grid',
+        placeItems: 'center',
+      }}
+    >
+      <pre>{art}</pre>
+    </div>
   );
 };
 
