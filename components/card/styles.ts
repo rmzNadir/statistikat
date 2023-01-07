@@ -19,7 +19,7 @@ export const BaseCard = styled.div`
   gap: ${({ theme }) => theme.space[2]};
 `;
 
-export const CardImage = styled(NextImage)`
+export const BaseCardImage = styled(NextImage)`
   aspect-ratio: 1;
   border-radius: ${({ theme }) => theme.radii.md};
   object-fit: cover;
