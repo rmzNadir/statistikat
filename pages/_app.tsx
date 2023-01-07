@@ -11,6 +11,7 @@ import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps as NextAppProps } from 'next/app';
 import { useState } from 'react';
+import { AppLayout } from '@components/app-layout';
 import { theme } from '@config/theme';
 
 interface AppProps extends NextAppProps {
@@ -33,7 +34,9 @@ const MyApp = ({
       <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <Component {...pageProps} />
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

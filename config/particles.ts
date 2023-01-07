@@ -32,7 +32,7 @@ export const getParticlesConfig: GetParticlesConfig = (themeConfig) => {
         },
       },
       opacity: {
-        value: 0.75,
+        value: 1,
         random: false,
         anim: {
           enable: true,
