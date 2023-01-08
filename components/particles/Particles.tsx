@@ -7,19 +7,21 @@ import { getParticlesConfig } from '@config/particles';
 import { theme } from '@config/theme';
 import { StyledParticles } from './styles';
 
+const animationVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 export const Particles = () => {
-  const controls = useAnimation();
+  const animationControls = useAnimation();
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
 
   const particlesLoaded = useCallback(async () => {
-    controls.start({
-      opacity: '100%',
-      transition: { duration: 0.5 },
-    });
-  }, [controls]);
+    await animationControls.start('visible');
+  }, [animationControls]);
 
   const dotColor = useColorModeValue(
     theme.colors.purple[900],
@@ -27,7 +29,12 @@ export const Particles = () => {
   );
 
   return (
-    <motion.div animate={controls} initial={{ opacity: '0%' }}>
+    <motion.div
+      animate={animationControls}
+      variants={animationVariants}
+      initial="hidden"
+      transition={{ duration: 0.5 }}
+    >
       <StyledParticles
         init={particlesInit}
         loaded={particlesLoaded}
