@@ -1,4 +1,4 @@
-import {
+import type {
   DefaultSession,
   Account as NextAuthAccount,
   Profile as NextAuthProfile,
@@ -33,7 +33,7 @@ declare module 'next-auth' {
   interface Session {
     user: NextAuthProfile;
     expires: DefaultSession['expires'];
-    error?: 'RefreshAccessTokenError';
+    error: 'RefreshAccessTokenError' | null;
   }
   /**
    * Usually contains information about the provider being used

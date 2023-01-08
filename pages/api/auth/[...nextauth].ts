@@ -94,7 +94,7 @@ export const authOptions: NextAuthOptions = {
 
       session.user.refreshToken = token.refreshToken;
 
-      session.error = token.error;
+      session.error = token.error ?? null;
 
       return session;
     },

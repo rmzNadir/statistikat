@@ -32,6 +32,7 @@ export const createSSPQueryFetch: CreateSSPQueryFetch =
 
     return {
       props: {
+        session,
         dehydratedState: dehydrate(queryClient),
       },
     };

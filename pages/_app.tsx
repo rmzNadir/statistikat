@@ -6,10 +6,10 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import type { NextPageContext } from 'next';
 import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps as NextAppProps } from 'next/app';
+import type { AppContextType } from 'next/dist/shared/lib/utils';
 import { useState } from 'react';
 import { AppLayout } from '@components/app-layout';
 import { MediaContextProvider } from '@components/Media';
@@ -49,9 +49,16 @@ const MyApp = ({
 
 export default MyApp;
 
-MyApp.getInitialProps = ({ ctx: { req } }: { ctx: NextPageContext }) => ({
-  cookies: req?.headers.cookie ?? '',
-  // Required as otherwise we'll run into 'cant read properties of undefined' errors
-  // when cold-loading pages that don't pre-fetch any data
-  pageProps: {},
-});
+// TODO: look into v8 error preventing us from fetching session here
+MyApp.getInitialProps = (appCTX: AppContextType) => {
+  const {
+    ctx: { req },
+  } = appCTX;
+
+  return {
+    cookies: req?.headers.cookie ?? '',
+    // Required as otherwise we'll run into 'cant read properties of undefined' errors
+    // when cold-loading pages that don't pre-fetch any data
+    pageProps: {},
+  };
+};

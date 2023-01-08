@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable prettier/prettier */
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
+import { unstable_getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]';
 
 const Home: NextPage = () => {
   const art = String.raw` 
@@ -23,3 +25,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await unstable_getServerSession(req, res, authOptions);
+
+  return {
+    props: { session },
+  };
+};
