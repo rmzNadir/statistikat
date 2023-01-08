@@ -1,14 +1,12 @@
-import { Button, useMediaQuery } from '@chakra-ui/react';
-
+import { Button } from '@chakra-ui/react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { theme } from '@config/theme';
+import { Media } from '@components/Media';
 import { HeaderActionsContainer } from './styles';
 import { ThemeToggleButton } from '../theme-toggle-button';
 
 export const HeaderActions = () => {
   const { data: session } = useSession();
-  const [isMobile] = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -23,7 +21,9 @@ export const HeaderActions = () => {
 
   return (
     <HeaderActionsContainer>
-      {!isMobile && <ThemeToggleButton />}
+      <Media lessThan="md">
+        <ThemeToggleButton />
+      </Media>
       {session && <Button>Profile</Button>}
       {session && <Button onClick={handleSignOut}>Logout</Button>}
       {!session && (

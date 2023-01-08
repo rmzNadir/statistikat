@@ -12,6 +12,7 @@ import { SessionProvider } from 'next-auth/react';
 import type { AppProps as NextAppProps } from 'next/app';
 import { useState } from 'react';
 import { AppLayout } from '@components/app-layout';
+import { MediaContextProvider } from '@components/Media';
 import { theme } from '@config/theme';
 
 interface AppProps extends NextAppProps {
@@ -34,9 +35,11 @@ const MyApp = ({
       <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <AppLayout>
-              <Component {...pageProps} />
-            </AppLayout>
+            <MediaContextProvider disableDynamicMediaQueries>
+              <AppLayout>
+                <Component {...pageProps} />
+              </AppLayout>
+            </MediaContextProvider>
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

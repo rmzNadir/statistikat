@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.header`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  min-width: 0;
   position: relative;
   z-index: ${({ theme }) => theme.zIndices.modal + 1};
 `;
@@ -25,19 +21,34 @@ export const HeaderContent = styled.div`
   }
 
   & h1 {
+    min-height: 2rem;
     line-height: 1;
     position: relative;
     padding-left: ${({ theme }) => theme.space[10]};
 
-    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      padding-left: ${({ theme }) => theme.space[12]};
-    }
-
     &:before {
+      font-size: ${({ theme }) => theme.fontSizes['3xl']};
       content: '🐈‍⬛';
       position: absolute;
-      left: -3%;
-      bottom: 15%;
+      right: 35%;
+      left: -2%;
+      bottom: 10%;
+    }
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      padding-left: ${({ theme }) => theme.space[12]};
+
+      &:before {
+        font-size: ${({ theme }) => theme.fontSizes['4xl']};
+      }
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      font-size: 0;
+
+      &:before {
+        left: -10%;
+      }
     }
   }
 `;
