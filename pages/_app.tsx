@@ -1,6 +1,8 @@
 import '@config/axios';
 import '@config/baseCSS.css';
+import 'focus-visible/dist/focus-visible';
 import { ChakraProvider, cookieStorageManagerSSR } from '@chakra-ui/react';
+import { Global } from '@emotion/react';
 import {
   Hydrate,
   QueryClient,
@@ -13,7 +15,7 @@ import type { AppContextType } from 'next/dist/shared/lib/utils';
 import { useState } from 'react';
 import { AppLayout } from '@components/app-layout';
 import { MediaContextProvider } from '@components/Media';
-import { theme } from '@config/theme';
+import { GlobalStyles, theme } from '@config/theme';
 
 interface AppProps extends NextAppProps {
   cookies: string;
@@ -32,6 +34,7 @@ const MyApp = ({
       theme={theme}
       colorModeManager={cookieStorageManagerSSR(cookies)}
     >
+      <Global styles={GlobalStyles} />
       <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
