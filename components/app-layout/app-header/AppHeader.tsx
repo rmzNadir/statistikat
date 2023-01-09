@@ -1,5 +1,6 @@
-import { Heading, useColorModeValue } from '@chakra-ui/react';
+import { Heading, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import { useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 import { Link } from '@components/link';
 import { Media } from '@components/Media';
 import { theme } from '@config/theme';
@@ -7,17 +8,24 @@ import { HeaderActions } from './header-actions';
 import { HeaderDrawer } from './header-drawer';
 import { Header, HeaderContent } from './styles';
 
-const animationVariants = {
-  drawerOpen: { paddingRight: 0 },
-  drawerClosed: { paddingRight: theme.space[5] },
-};
-
 export const AppHeader = () => {
+  const [isMobile] = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
   const animationControls = useAnimation();
   const backgroundColor = useColorModeValue(
     theme.colors.white,
     theme.colors.gray[800],
   );
+  const animationVariants = {
+    drawerOpen: { paddingRight: 0 },
+    drawerClosed: { paddingRight: theme.space[isMobile ? 5 : 8] },
+  };
+
+  useEffect(() => {
+    animationControls.start({
+      paddingRight: animationVariants.drawerClosed.paddingRight,
+      transition: { duration: 0 },
+    });
+  }, [animationVariants.drawerClosed.paddingRight, animationControls]);
 
   const onDrawerToggle = (isOpen: boolean) => {
     const isScrollbarPresent =
