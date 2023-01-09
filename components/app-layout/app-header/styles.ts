@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
 export const Header = styled.header`
   position: relative;
   z-index: ${({ theme }) => theme.zIndices.modal + 1};
 `;
 
-export const HeaderContent = styled.div`
+export const HeaderContent = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +14,6 @@ export const HeaderContent = styled.div`
   width: 100%;
   min-height: ${({ theme }) => theme.space[20]};
   min-width: 0;
-
   padding: ${({ theme }) => theme.space[5]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {

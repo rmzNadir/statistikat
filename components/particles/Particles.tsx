@@ -20,7 +20,7 @@ export const Particles = () => {
   }, []);
 
   const particlesLoaded = useCallback(async () => {
-    await animationControls.start('visible');
+    animationControls.start('visible');
   }, [animationControls]);
 
   const dotColor = useColorModeValue(

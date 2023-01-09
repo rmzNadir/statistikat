@@ -1,4 +1,7 @@
-import { DrawerContent as ChakraDrawerContent } from '@chakra-ui/react';
+import {
+  DrawerContent as ChakraDrawerContent,
+  DrawerOverlay as ChakraDrawerOverlay,
+} from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 export const HeaderDrawerContainer = styled.div`
@@ -6,10 +9,21 @@ export const HeaderDrawerContainer = styled.div`
   gap: ${({ theme }) => theme.space[3]};
 `;
 
-export const DrawerContent = styled(ChakraDrawerContent)`
-  padding: 0;
+interface DrawerContentProps {
+  appHeaderHeight: number;
+}
+export const DrawerOverlay = styled(ChakraDrawerOverlay, {
+  shouldForwardProp: (prop) => prop !== 'appHeaderHeight',
+})<DrawerContentProps>`
+  top: ${({ appHeaderHeight }) => appHeaderHeight}px !important;
+`;
 
+export const DrawerContent = styled(ChakraDrawerContent, {
+  shouldForwardProp: (prop) => prop !== 'appHeaderHeight',
+})<DrawerContentProps>`
+  padding: 0;
+  top: ${({ appHeaderHeight }) => appHeaderHeight}px !important;
   & > div {
-    padding: ${({ theme }) => `0 ${theme.space[4]} ${theme.space[5]}`};
+    padding: ${({ theme }) => `0 ${theme.space[5]} ${theme.space[5]}`};
   }
 `;

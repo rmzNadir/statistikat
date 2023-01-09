@@ -2,19 +2,23 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Drawer,
   DrawerBody,
-  DrawerOverlay,
   IconButton,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
+import type { FC } from 'react';
 import { useRef } from 'react';
 
 import { HeaderActions } from '@components/app-layout/app-header/header-actions';
 import { theme } from '@config/theme';
-import { DrawerContent, HeaderDrawerContainer } from './styles';
+import { DrawerContent, DrawerOverlay, HeaderDrawerContainer } from './styles';
 import { ThemeToggleButton } from '../theme-toggle-button';
 
-export const HeaderDrawer = () => {
+interface Props {
+  onDrawerToggle(isDrawerOpen: boolean): void;
+}
+
+export const HeaderDrawer: FC<Props> = ({ onDrawerToggle }) => {
   const { isOpen, onClose, onToggle } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement>(null);
   const backgroundColor = useColorModeValue(
@@ -22,10 +26,15 @@ export const HeaderDrawer = () => {
     theme.colors.gray[800],
   );
 
+  const handleToggleDrawer = () => {
+    onToggle();
+    onDrawerToggle(!isOpen);
+  };
+
   const appHeaderHeight =
     typeof window === 'undefined'
       ? 0
-      : document.getElementById('app-header')?.clientHeight;
+      : document.getElementById('app-header')?.clientHeight ?? 0;
 
   return (
     <HeaderDrawerContainer>
@@ -33,18 +42,20 @@ export const HeaderDrawer = () => {
       <IconButton
         aria-label="open menu"
         icon={<HamburgerIcon />}
-        onClick={onToggle}
+        onClick={handleToggleDrawer}
         ref={btnRef}
       />
       <Drawer
         placement="top"
         onClose={onClose}
+        onOverlayClick={() => onDrawerToggle(false)}
         isOpen={isOpen}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay />
+        <DrawerOverlay appHeaderHeight={appHeaderHeight} />
         <DrawerContent
-          style={{ top: appHeaderHeight, backgroundColor }}
+          appHeaderHeight={appHeaderHeight}
+          backgroundColor={backgroundColor}
           transition="ease-in"
         >
           <DrawerBody>
