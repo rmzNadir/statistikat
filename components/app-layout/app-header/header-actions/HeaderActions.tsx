@@ -24,7 +24,6 @@ export const HeaderActions = () => {
       <Media greaterThanOrEqual="md">
         <ThemeToggleButton />
       </Media>
-      {session && <Button>Profile</Button>}
       {session && <Button onClick={handleSignOut}>Logout</Button>}
       {!session && (
         <Button onClick={() => signIn('spotify', { callbackUrl: '/' })}>
