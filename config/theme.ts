@@ -4,6 +4,9 @@ import {
   withDefaultColorScheme,
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
+import { Inter } from '@next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const GlobalStyles = css`
   /*
@@ -20,6 +23,10 @@ export const theme = extendTheme(
   {
     initialColorMode: 'dark',
     useSystemColorMode: false,
+    fonts: {
+      heading: inter.style.fontFamily,
+      body: inter.style.fontFamily,
+    },
   },
   withDefaultColorScheme({
     colorScheme: 'purple',

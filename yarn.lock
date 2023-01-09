@@ -1272,6 +1272,11 @@
   dependencies:
     glob "7.1.7"
 
+"@next/font@13.1.1":
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-13.1.1.tgz#a0cb38bf8a181560f195d82f13f9f92fd0b0dd20"
+  integrity sha512-amygRorS05hYK1/XQRZo5qBl7l2fpHnezeKU/cNveWU5QJg+sg8gMGkUXHtvesNKpiKIJshBRH1TzvO+2sKpvQ==
+
 "@next/swc-android-arm-eabi@13.1.1":
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/@next/swc-android-arm-eabi/-/swc-android-arm-eabi-13.1.1.tgz#b5c3cd1f79d5c7e6a3b3562785d4e5ac3555b9e1"
@@ -3234,7 +3239,7 @@ next@13.1.1:
     "@next/swc-win32-ia32-msvc" "13.1.1"
     "@next/swc-win32-x64-msvc" "13.1.1"
 
-nextjs-progressbar@^0.0.16:
+nextjs-progressbar@0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/nextjs-progressbar/-/nextjs-progressbar-0.0.16.tgz#d2c1e54ffc2c6d52b64282c0d764a44241fbc36e"
   integrity sha512-GV0fD38EMD3vSDCmkq+tObmoup6QA91a6a9MxGuhJZuRk/9TNsrHGnIQQQ/sggkMkXuT4fBgF6jRjFwScDT3zA==
@@ -3607,7 +3612,7 @@ react-style-singleton@^2.2.1:
     invariant "^2.2.4"
     tslib "^2.0.0"
 
-react-tsparticles@^2.7.1:
+react-tsparticles@2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/react-tsparticles/-/react-tsparticles-2.7.1.tgz#f7172284243e54ed0f7d9d05beb51c59bf529721"
   integrity sha512-r3ogLLkob11KDsXSC8EsvgPgDutmmNOMqYiD1KLRoSz5t1W3WODs3eS370Bzr9bgRjYZSajTHeT5cXMzY1G/Gg==
@@ -4312,7 +4317,7 @@ tsparticles-updater-wobble@^2.7.1:
   dependencies:
     tsparticles-engine "^2.7.1"
 
-tsparticles@^2.7.1:
+tsparticles@2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/tsparticles/-/tsparticles-2.7.1.tgz#9ca28efb7ee16c504a14edd068014b13ca7f480e"
   integrity sha512-W8hVaUBnXOGHiaJfgFCpgYd0aisp5j4Pv/Oo+K21B5GzpGudi6XbwGAK8GX5x214yQG8VM3+uGUIRnha97DVtg==

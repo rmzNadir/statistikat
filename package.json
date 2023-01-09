@@ -19,17 +19,18 @@
     "@chakra-ui/system": "2.3.7",
     "@emotion/react": "11",
     "@emotion/styled": "11",
+    "@next/font": "13.1.1",
     "@tanstack/react-query": "4.20.9",
     "axios": "1.2.2",
     "focus-visible": "5.2.0",
     "framer-motion": "8",
     "next": "13.1.1",
     "next-auth": "4.18.7",
-    "nextjs-progressbar": "^0.0.16",
+    "nextjs-progressbar": "0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-tsparticles": "^2.7.1",
-    "tsparticles": "^2.7.1"
+    "react-tsparticles": "2.7.1",
+    "tsparticles": "2.7.1"
   },
   "devDependencies": {
     "@types/node": "18.11.18",
