@@ -31,7 +31,11 @@ export const AppHeader = () => {
     const isScrollbarPresent =
       document.body.scrollHeight > document.body.clientHeight;
 
-    if (!isScrollbarPresent) {
+    const isMobileBrowser = /iPhone|iPad|iPod|Android/i.test(
+      navigator.userAgent,
+    );
+
+    if (!isScrollbarPresent || isMobileBrowser) {
       return;
     }
 
