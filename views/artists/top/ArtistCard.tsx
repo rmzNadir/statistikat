@@ -12,15 +12,17 @@ interface Props {
 export const ArtistCard: FC<Props> = ({ artist, rank }) => {
   const { name, images } = artist;
 
-  const artistProfilePicture = images[0];
+  const artistProfilePicture = images[1];
 
   return (
     <Card>
       <Card.Image
         src={artistProfilePicture.url}
         alt={`${name}} album art`}
-        width={640}
-        height={640}
+        width={320}
+        height={320}
+        // Preload first 10 images
+        priority={rank < 11}
       />
       <TruncatedText as="b" noOfLines={1}>
         {rank}. {name}
