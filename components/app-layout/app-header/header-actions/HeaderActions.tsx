@@ -21,7 +21,7 @@ export const HeaderActions = () => {
 
   return (
     <HeaderActionsContainer>
-      <Media lessThan="md">
+      <Media greaterThanOrEqual="md">
         <ThemeToggleButton />
       </Media>
       {session && <Button>Profile</Button>}
