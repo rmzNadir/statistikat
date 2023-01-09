@@ -2,6 +2,10 @@ import type { RefObject } from 'react';
 import { useState } from 'react';
 import { useSafeLayoutEffect } from './useSafeLayoutEffect';
 
+export const isOverflown = <E extends HTMLElement>(element: E) =>
+  element.offsetHeight < element.scrollHeight ||
+  element.offsetWidth < element.scrollWidth;
+
 export const useIsOverflown = <R extends HTMLElement>(ref: RefObject<R>) => {
   const [isOverflow, setIsOverflow] = useState(false);
 
@@ -9,9 +13,7 @@ export const useIsOverflown = <R extends HTMLElement>(ref: RefObject<R>) => {
     const { current } = ref;
 
     if (current) {
-      const hasOverflow = current.scrollHeight > current.clientHeight;
-
-      setIsOverflow(hasOverflow);
+      setIsOverflow(isOverflown(current));
     }
   }, [ref]);
 

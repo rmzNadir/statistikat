@@ -1,18 +1,11 @@
 import type { TextProps } from '@chakra-ui/react';
 import { Text, Tooltip } from '@chakra-ui/react';
-import type { ReactNode } from 'react';
 import { useRef, useState } from 'react';
-import { useIsOverflown } from '@hooks/useIsOverflown';
+import { isOverflown } from '@hooks/useIsOverflown';
 import { useOnPressedOutside } from '@hooks/useOnPressedOutside';
 
-interface Props extends TextProps {
-  children: ReactNode;
-  noOfLines: number;
-}
-
-export const TruncatedText = ({ children, noOfLines, ...textProps }: Props) => {
+export const TruncatedText = ({ children, ...textProps }: TextProps) => {
   const textElementRef = useRef<HTMLParagraphElement>(null);
-  const isOverflown = useIsOverflown(textElementRef);
 
   const [isPressingTooltip, setIsPressingTooltip] = useState(false);
   const [isHoveringTooltip, setIsHoveringTooltip] = useState(false);
@@ -24,7 +17,7 @@ export const TruncatedText = ({ children, noOfLines, ...textProps }: Props) => {
     window.matchMedia('(pointer: coarse)').matches;
 
   const shouldShowTooltip = () => {
-    if (!isOverflown) {
+    if (!textElementRef.current || !isOverflown(textElementRef.current)) {
       return false;
     }
 
@@ -48,7 +41,6 @@ export const TruncatedText = ({ children, noOfLines, ...textProps }: Props) => {
   return (
     <Tooltip label={children} isOpen={shouldShowTooltip()} placement="top">
       <Text
-        noOfLines={noOfLines}
         {...textProps}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

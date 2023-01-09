@@ -24,6 +24,6 @@ export const DrawerContent = styled(ChakraDrawerContent, {
   padding: 0;
   top: ${({ appHeaderHeight }) => appHeaderHeight}px !important;
   & > div {
-    padding: ${({ theme }) => `0 ${theme.space[5]} ${theme.space[5]}`};
+    padding: ${({ theme }) => `0 ${theme.space[3]} ${theme.space[3]}`};
   }
 `;

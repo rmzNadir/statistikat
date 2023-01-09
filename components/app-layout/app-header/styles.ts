@@ -14,15 +14,14 @@ export const HeaderContent = styled(motion.div)`
   width: 100%;
   min-height: ${({ theme }) => theme.space[20]};
   min-width: 0;
-  padding: ${({ theme }) => theme.space[5]};
+  padding-left: ${({ theme }) => theme.space[3]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: ${({ theme }) => theme.space[8]};
+    padding: ${({ theme }) => theme.space[6]};
   }
 
   & h1 {
     min-height: 2rem;
-    line-height: 1;
     position: relative;
     padding-left: ${({ theme }) => theme.space[10]};
 
@@ -40,14 +39,6 @@ export const HeaderContent = styled(motion.div)`
 
       &:before {
         font-size: ${({ theme }) => theme.fontSizes['4xl']};
-      }
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      font-size: 0;
-
-      &:before {
-        left: -10%;
       }
     }
   }

@@ -17,7 +17,7 @@ export const AppHeader = () => {
   );
   const animationVariants = {
     drawerOpen: { paddingRight: 0 },
-    drawerClosed: { paddingRight: theme.space[isMobile ? 5 : 8] },
+    drawerClosed: { paddingRight: theme.space[isMobile ? 3 : 6] },
   };
 
   useEffect(() => {

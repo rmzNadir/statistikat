@@ -22,11 +22,11 @@ export const LayoutMainContainer = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  padding: 0 ${({ theme }) => theme.space[5]};
+  gap: ${({ theme }) => theme.space[4]};
+  padding: 0 ${({ theme }) => theme.space[6]};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    gap: ${({ theme }) => theme.space[4]};
-    padding: 0 ${({ theme }) => theme.space[8]};
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 ${({ theme }) => theme.space[3]};
   }
 `;
 
@@ -39,7 +39,11 @@ export const LayoutMain = styled.main`
 
 export const ChildrenContainer = styled.div`
   flex: 1 1 auto;
-  padding: ${({ theme }) => theme.space[5]};
+  padding: ${({ theme }) => theme.space[6]};
   border-radius: ${({ theme }) => theme.radii.md};
   position: relative;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.space[3]};
+  }
 `;

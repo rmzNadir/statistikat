@@ -3,7 +3,7 @@ import { IconButton } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import type { ImageProps } from 'next/image';
 import type { FC } from 'react';
-import { BaseCard, BaseCardImage } from './styles';
+import { BaseCard, BaseCardContent, BaseCardImage } from './styles';
 
 type CardActionProps = IconButtonProps;
 
@@ -35,6 +35,7 @@ const CardImage: FC<ImageProps> = (props) => {
 interface ChildElements {
   Image: typeof CardImage;
   Action: typeof CardAction;
+  Content: typeof BaseCardContent;
 }
 
 // Hmm...
@@ -42,5 +43,6 @@ const Card = BaseCard as typeof BaseCard & ChildElements;
 
 Card.Image = CardImage;
 Card.Action = CardAction;
+Card.Content = BaseCardContent;
 
 export { Card };

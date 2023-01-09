@@ -1,0 +1,1 @@
+export { MobileRank } from './MobileRank';
