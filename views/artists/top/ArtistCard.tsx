@@ -32,7 +32,7 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
           // Preload first 10 images
           priority={rank < 11}
         />
-        <Center gap="1">
+        <Center gap="1" justifyContent={['center', 'flex-start']}>
           <Media greaterThanOrEqual="md">
             <b>{rank}.</b>
           </Media>
