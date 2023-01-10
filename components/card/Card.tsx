@@ -1,13 +1,8 @@
-import type { ComponentWithAs, IconButtonProps } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import type { ImageProps } from 'next/image';
 import type { FC } from 'react';
 import { BaseCard, BaseCardContent, BaseCardImage } from './styles';
-
-const CardAction: ComponentWithAs<'button', IconButtonProps> = (props) => (
-  <IconButton {...props} />
-);
 
 const animationVariants = {
   hidden: { opacity: 0 },
@@ -34,7 +29,7 @@ const CardImage: FC<ImageProps> = (props) => {
 
 interface ChildElements {
   Image: typeof CardImage;
-  Action: typeof CardAction;
+  Action: typeof IconButton;
   Content: typeof BaseCardContent;
 }
 
@@ -42,7 +37,7 @@ interface ChildElements {
 const Card = BaseCard as typeof BaseCard & ChildElements;
 
 Card.Image = CardImage;
-Card.Action = CardAction;
+Card.Action = IconButton;
 Card.Content = BaseCardContent;
 
 export { Card };

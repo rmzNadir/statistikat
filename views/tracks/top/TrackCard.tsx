@@ -57,7 +57,7 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
             {albumName}
           </TruncatedText>
         </Card.Content>
-        <Media lessThan="md">
+        <Media lessThan="md" className="card-actions">
           <Card.Action
             icon={<Icon as={PlayerPlay} />}
             aria-label="play on spotify"

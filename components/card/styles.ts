@@ -16,7 +16,7 @@ export const BaseCard = styled(Box)`
     min-width: 0;
     padding: ${({ theme }) => theme.space[2]};
 
-    & > :last-child {
+    & > .card-actions:last-child {
       margin-left: auto;
       align-self: center;
     }

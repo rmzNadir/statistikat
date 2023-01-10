@@ -1,7 +1,7 @@
-import type { LinkProps as ChakraLinkProps } from '@chakra-ui/react';
-import { Link as ChakraLink } from '@chakra-ui/react';
+import type { As, LinkProps as ChakraLinkProps } from '@chakra-ui/react';
+import { Link as ChakraLink, forwardRef } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface LinkProps extends ChakraLinkProps {
   children: ReactNode;
@@ -9,18 +9,16 @@ export interface LinkProps extends ChakraLinkProps {
   href: string;
 }
 
-export const Link: FC<LinkProps> = ({
-  children,
-  noUnderline,
-  href,
-  ...props
-}) => (
-  <ChakraLink
-    href={href}
-    as={NextLink}
-    style={{ textDecoration: noUnderline ? 'none' : undefined }}
-    {...props}
-  >
-    {children}
-  </ChakraLink>
+export const Link = forwardRef<LinkProps, As<unknown>>(
+  ({ href, noUnderline, children, ...props }, ref) => (
+    <ChakraLink
+      ref={ref}
+      href={href}
+      as={NextLink}
+      style={{ textDecoration: noUnderline ? 'none' : undefined }}
+      {...props}
+    >
+      {children}
+    </ChakraLink>
+  ),
 );
