@@ -1,8 +1,12 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
+
 import type { FC } from 'react';
 import React from 'react';
+import { PlayerPlay } from 'tabler-icons-react';
 import { Card } from '@components/card';
 import { ItemGrid } from '@components/Common';
+import { Icon } from '@components/Icon';
+import { Link } from '@components/link';
 import { Media } from '@components/Media';
 import { MobileRank } from '@components/mobile-rank';
 import { TruncatedText } from '@components/TruncatedText';
@@ -14,7 +18,7 @@ interface Props {
 }
 
 export const TrackCard: FC<Props> = ({ track, rank }) => {
-  const { name, album } = track;
+  const { name, album, uri } = track;
 
   const { images, name: albumName } = album;
 
@@ -53,6 +57,16 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
             {albumName}
           </TruncatedText>
         </Card.Content>
+        <Media lessThan="md">
+          <Card.Action
+            icon={<Icon as={PlayerPlay} />}
+            aria-label="play on spotify"
+            as={Link}
+            href={uri}
+            size="sm"
+            variant="ghost"
+          />
+        </Media>
       </Card>
     </ItemGrid>
   );

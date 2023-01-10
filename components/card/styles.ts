@@ -15,6 +15,11 @@ export const BaseCard = styled(Box)`
     flex-direction: row;
     min-width: 0;
     padding: ${({ theme }) => theme.space[2]};
+
+    & > :last-child {
+      margin-left: auto;
+      align-self: center;
+    }
   }
 `;
 

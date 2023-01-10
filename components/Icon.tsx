@@ -9,7 +9,7 @@ export const Icon: ComponentWithAs<
     ...props,
     boxSize: 5,
     verticalAlign: '-4px',
-    fillOpacity: '0.1',
+    fillOpacity: '0.25',
     fill: 'currentcolor',
   };
 
