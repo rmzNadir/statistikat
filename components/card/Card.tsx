@@ -1,13 +1,13 @@
-import type { IconButtonProps } from '@chakra-ui/react';
+import type { ComponentWithAs, IconButtonProps } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import type { ImageProps } from 'next/image';
 import type { FC } from 'react';
 import { BaseCard, BaseCardContent, BaseCardImage } from './styles';
 
-type CardActionProps = IconButtonProps;
-
-const CardAction: FC<CardActionProps> = (props) => <IconButton {...props} />;
+const CardAction: ComponentWithAs<'button', IconButtonProps> = (props) => (
+  <IconButton {...props} />
+);
 
 const animationVariants = {
   hidden: { opacity: 0 },

@@ -1,4 +1,3 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Drawer,
   DrawerBody,
@@ -9,7 +8,9 @@ import {
 import type { FC } from 'react';
 import { useRef } from 'react';
 
+import { Menu } from 'tabler-icons-react';
 import { HeaderActions } from '@components/app-layout/app-header/header-actions';
+import { Icon } from '@components/Icon';
 import { theme } from '@config/theme';
 import { DrawerContent, DrawerOverlay, HeaderDrawerContainer } from './styles';
 import { ThemeToggleButton } from '../theme-toggle-button';
@@ -41,7 +42,7 @@ export const HeaderDrawer: FC<Props> = ({ onDrawerToggle }) => {
       <ThemeToggleButton />
       <IconButton
         aria-label="open menu"
-        icon={<HamburgerIcon />}
+        icon={<Icon as={Menu} />}
         onClick={handleToggleDrawer}
         ref={btnRef}
       />

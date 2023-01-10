@@ -1,9 +1,10 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Button, Center, Divider, Text } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { ExternalLink } from 'tabler-icons-react';
 import { Card } from '@components/card';
+import { Icon } from '@components/Icon';
 import { Link } from '@components/link';
 import { useSafeLayoutEffect } from '@hooks/useSafeLayoutEffect';
 
@@ -42,7 +43,7 @@ const Login: NextPage = () => {
                 _dark={{ color: 'purple.200' }}
                 _light={{ color: 'purple.500' }}
               >
-                here <ExternalLinkIcon mb="2px" />
+                here <Icon as={ExternalLink} />
               </Link>{' '}
             </p>
           )}
