@@ -6,7 +6,8 @@ import { useInfiniteTopTracks } from '@hooks/queries/useTopTracks';
 import { TrackCard } from './TrackCard';
 
 export const TopTracks: FC = () => {
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteTopTracks();
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useInfiniteTopTracks();
   const [pages, setPages] = useState<NonNullable<typeof data>['pages']>(
     data?.pages ?? [],
   );
@@ -16,8 +17,7 @@ export const TopTracks: FC = () => {
 
     if (safePages.length > 1) {
       const deepClonedPages = structuredClone(safePages);
-      const basePage = deepClonedPages[1];
-      const { items } = basePage;
+      const { items } = deepClonedPages[1];
 
       const deepClonedItem = structuredClone(items[0]);
 
@@ -30,14 +30,17 @@ export const TopTracks: FC = () => {
         url: '/100.png',
       };
 
-      basePage.items.push(deepClonedItem);
+      items.push(deepClonedItem);
 
       setPages(deepClonedPages);
     }
   }, [data?.pages]);
 
   return (
-    <InfiniteScroll fetchMore={fetchNextPage} disabled={isFetchingNextPage}>
+    <InfiniteScroll
+      fetchMore={fetchNextPage}
+      disabled={isFetchingNextPage || !hasNextPage}
+    >
       <Grid>
         {pages.map((page) =>
           page.items.map((track, itemIndex) => (

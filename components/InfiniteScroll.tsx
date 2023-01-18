@@ -20,20 +20,15 @@ export const InfiniteScroll: FC<Props> = ({
   });
 
   useEffect(() => {
-    const unsubScrollYProgress = scrollYProgress.on(
-      'change',
-      (scrollProgress) => {
-        const shouldFetchMore = !disabled && scrollProgress > 0.7;
+    if (disabled) {
+      return undefined;
+    }
 
-        if (shouldFetchMore) {
-          fetchMore();
-        }
-      },
-    );
-
-    return () => {
-      unsubScrollYProgress();
-    };
+    return scrollYProgress.on('change', (scrollProgress) => {
+      if (scrollProgress > 0.7) {
+        fetchMore();
+      }
+    });
   }, [scrollYProgress, disabled, fetchMore]);
 
   return <div ref={ref}>{children}</div>;
