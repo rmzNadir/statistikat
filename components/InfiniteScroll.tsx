@@ -23,7 +23,7 @@ export const InfiniteScroll: FC<Props> = ({
     const unsubScrollYProgress = scrollYProgress.on(
       'change',
       (scrollProgress) => {
-        const shouldFetchMore = !disabled && scrollProgress > 0.6;
+        const shouldFetchMore = !disabled && scrollProgress > 0.7;
 
         if (shouldFetchMore) {
           fetchMore();
