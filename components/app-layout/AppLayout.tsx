@@ -1,6 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/react';
-import { signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import { signIn, useSession } from 'next-auth/react';
 import type { FC, ReactNode } from 'react';
 import { useEffect } from 'react';
 

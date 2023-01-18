@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react';
-import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { Media } from '@components/Media';
 import { HeaderActionsContainer } from './styles';
 import { ThemeToggleButton } from '../theme-toggle-button';

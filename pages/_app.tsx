@@ -8,10 +8,10 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import type { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
 import type { AppProps as NextAppProps } from 'next/app';
 import type { AppContextType } from 'next/dist/shared/lib/utils';
+import type { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
 import NextNProgress from 'nextjs-progressbar';
 import { useState } from 'react';
 import { AppLayout } from '@components/app-layout';
