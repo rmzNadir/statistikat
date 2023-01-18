@@ -1,5 +1,4 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
-
 import type { FC } from 'react';
 import React from 'react';
 import { PlayerPlay } from 'tabler-icons-react';
@@ -26,6 +25,9 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
 
   const secondaryTextColor = useColorModeValue('gray.900', 'gray.300');
 
+  // Preload first 10 images
+  const shouldHavePriority = rank < 11;
+
   return (
     <ItemGrid>
       <Media lessThan="md">
@@ -35,10 +37,10 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
         <Card.Image
           src={albumArt.url}
           alt={`${albumName} album art`}
-          width={300}
-          height={300}
-          // Preload first 10 images
-          priority={rank < 11}
+          width={albumArt.width}
+          height={albumArt.height}
+          priority={shouldHavePriority}
+          disableAnimation={shouldHavePriority}
         />
         <Card.Content>
           <Flex gap="1">
@@ -65,6 +67,7 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
             href={uri}
             size="sm"
             variant="ghost"
+            isExternal={rank === 100}
           />
         </Media>
       </Card>

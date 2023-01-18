@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { getTopArtists } from '@hooks/queries/useTopArtists';
-import { createSSPQueryFetch } from '@utils/createSSPQueryFetch';
+import { getInfiniteTopArtists } from '@hooks/queries/useTopArtists';
+import { createSSPInfiniteQueryPrefetch } from '@utils/createSSPInfiniteQueryPrefetch';
 import { withShallowNavigation } from '@utils/withShallowNavigation';
 import { TopArtists } from '@views/artists/top/TopArtists';
 
@@ -9,6 +9,6 @@ const Top: NextPage = () => <TopArtists />;
 export default Top;
 
 export const getServerSideProps: GetServerSideProps = withShallowNavigation(
-  createSSPQueryFetch('topArtists', getTopArtists),
+  createSSPInfiniteQueryPrefetch('topArtists', getInfiniteTopArtists),
   { requireAuth: true },
 );

@@ -18,6 +18,9 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
 
   const artistProfilePicture = images[1];
 
+  // Preload first 10 images
+  const shouldHavePriority = rank < 11;
+
   return (
     <ItemGrid>
       <Media lessThan="md">
@@ -29,8 +32,8 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
           alt={`${name}} album art`}
           width={320}
           height={320}
-          // Preload first 10 images
-          priority={rank < 11}
+          priority={shouldHavePriority}
+          disableAnimation={shouldHavePriority}
         />
         <Center gap="1" justifyContent={['center', 'flex-start']}>
           <Media greaterThanOrEqual="md">

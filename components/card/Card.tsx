@@ -1,23 +1,28 @@
 import { IconButton } from '@chakra-ui/react';
+import type { Variants } from 'framer-motion';
 import { motion, useAnimation } from 'framer-motion';
 import type { ImageProps } from 'next/image';
 import type { FC } from 'react';
 import { BaseCard, BaseCardContent, BaseCardImage } from './styles';
 
-const animationVariants = {
+const animationVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
 
-const CardImage: FC<ImageProps> = (props) => {
+interface CardImageProps extends ImageProps {
+  disableAnimation: boolean;
+}
+
+const CardImage: FC<CardImageProps> = ({ disableAnimation, ...props }) => {
   const animationControls = useAnimation();
 
   return (
     <motion.div
-      initial="hidden"
+      initial={disableAnimation ? 'visible' : 'hidden'}
       animate={animationControls}
       variants={animationVariants}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.15 }}
     >
       <BaseCardImage
         {...props}

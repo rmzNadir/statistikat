@@ -1,7 +1,7 @@
 import { Button, Center, Divider, Text } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 import { ExternalLink } from 'tabler-icons-react';
 import { Card } from '@components/card';
 import { Icon } from '@components/Icon';

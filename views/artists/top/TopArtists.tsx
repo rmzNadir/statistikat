@@ -1,16 +1,27 @@
 import type { FC } from 'react';
 import { Grid } from '@components/Common';
-import { useTopArtists } from '@hooks/queries/useTopArtists';
+import { InfiniteScroll } from '@components/InfiniteScroll';
+import { useInfiniteTopArtists } from '@hooks/queries/useTopArtists';
 import { ArtistCard } from './ArtistCard';
 
 export const TopArtists: FC = () => {
-  const { data: artists = [] } = useTopArtists();
+  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteTopArtists();
+
+  const pages = data?.pages ?? [];
 
   return (
-    <Grid>
-      {artists.map((artist, i) => (
-        <ArtistCard key={artist.uri} artist={artist} rank={i + 1} />
-      ))}
-    </Grid>
+    <InfiniteScroll fetchMore={fetchNextPage} disabled={isFetchingNextPage}>
+      <Grid>
+        {pages.map((page) =>
+          page.items.map((artist, itemIndex) => (
+            <ArtistCard
+              key={artist.uri}
+              artist={artist}
+              rank={page.offset + itemIndex + 1}
+            />
+          )),
+        )}
+      </Grid>
+    </InfiniteScroll>
   );
 };

@@ -1,18 +1,21 @@
-import type { UseQueryOptions } from '@tanstack/react-query';
-import { useQuery } from '@tanstack/react-query';
+import type {
+  InfiniteData,
+  UseInfiniteQueryOptions,
+} from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import type { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import type { FetchCB } from 'types/fetchUtils';
 
 type Options<FRV, SRV> = {
   queryFn: FetchCB<FRV>;
-  select?(data: FRV): SRV;
+  select?(data: InfiniteData<FRV>): InfiniteData<SRV>;
 } & Omit<
-  UseQueryOptions<FRV, unknown, SRV>,
+  UseInfiniteQueryOptions<FRV, unknown, SRV>,
   'queryFn' | 'enabled' | 'staleTime' | 'select'
 >;
 
-export const createQueryHook =
+export const createInfiniteQueryHook =
   <FetchReturnValue, SelectReturnValue = FetchReturnValue>(
     options: Options<FetchReturnValue, SelectReturnValue>,
   ) =>
@@ -24,7 +27,7 @@ export const createQueryHook =
 
     const { queryFn, ...otherOptions } = options;
 
-    return useQuery({
+    return useInfiniteQuery({
       queryFn: (ctx) => queryFn(session as Session, ctx),
       enabled: Boolean(session),
       // Prevent double fetch after initial page load while

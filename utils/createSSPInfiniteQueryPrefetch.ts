@@ -1,15 +1,9 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import type { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
-import type { FetchCB } from 'types/fetchUtils';
+import type { CreateSSPPrefetch } from 'types/fetchUtils';
 
-type CreateSSPQueryFetch = <FetchReturnValue>(
-  queryName: string,
-  fetchCB: FetchCB<FetchReturnValue>,
-) => GetServerSideProps;
-
-export const createSSPQueryFetch: CreateSSPQueryFetch =
+export const createSSPInfiniteQueryPrefetch: CreateSSPPrefetch =
   (queryName, fetchCB) => async (ctx) => {
     const session = await unstable_getServerSession(
       ctx.req,
@@ -28,7 +22,24 @@ export const createSSPQueryFetch: CreateSSPQueryFetch =
 
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery([queryName], () => fetchCB(session));
+    await queryClient.prefetchInfiniteQuery([queryName], (queryCTX) =>
+      fetchCB(session, queryCTX),
+    );
+
+    // Workaround for https://github.com/TanStack/query/issues/1458
+    queryClient.setQueryData<Awaited<ReturnType<typeof fetchCB>>>(
+      [queryName],
+      (data) => {
+        if (!data) {
+          return undefined;
+        }
+
+        return {
+          ...data,
+          pageParams: [null],
+        };
+      },
+    );
 
     return {
       props: {
