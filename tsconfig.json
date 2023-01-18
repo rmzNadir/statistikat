@@ -21,8 +21,10 @@
       "@context/*": ["context/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
-      "@views/*": ["views/*"]
-    }
+      "@views/*": ["views/*"],
+      "@tools/*": ["tools/*"]
+    },
+    "jsxImportSource": "@welldone-software/why-did-you-render"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
