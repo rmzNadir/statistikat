@@ -6,6 +6,10 @@ body,
 }
 
 html {
+  overflow-y: scroll;
+}
+
+html {
   --primary-color: var(--chakra-colors-purple-500);
   --scrollbar-thumb-color: var(--primary-color);
   --scrollbar-thumb-hover-color: var(--chakra-colors-purple-600);
