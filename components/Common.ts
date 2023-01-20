@@ -46,7 +46,8 @@ export const Grid = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
 
     & > * {
       max-width: unset;
