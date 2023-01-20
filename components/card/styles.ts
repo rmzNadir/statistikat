@@ -24,9 +24,9 @@ export const BaseCard = styled(Box)`
 `;
 
 export const BaseCardImage = styled(NextImage)`
-  aspect-ratio: 1;
   border-radius: ${({ theme }) => theme.radii.md};
   object-fit: cover;
+  aspect-ratio: 1;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     max-width: ${({ theme }) => theme.sizes[12]};

@@ -1,6 +1,7 @@
 import { useScroll } from 'framer-motion';
 import type { FC, ReactNode } from 'react';
-import React, { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
+import isEqual from 'react-fast-compare';
 
 interface Props {
   fetchMore: () => void;
@@ -8,7 +9,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const InfiniteScroll: FC<Props> = ({
+export const RawInfiniteScroll: FC<Props> = ({
   fetchMore,
   disabled,
   children,
@@ -33,3 +34,5 @@ export const InfiniteScroll: FC<Props> = ({
 
   return <div ref={ref}>{children}</div>;
 };
+
+export const InfiniteScroll = memo(RawInfiniteScroll, isEqual);

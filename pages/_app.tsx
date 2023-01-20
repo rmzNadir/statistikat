@@ -55,7 +55,6 @@ const MyApp = ({
 
 export default MyApp;
 
-// TODO: look into v8 error preventing us from fetching session here
 MyApp.getInitialProps = (appCTX: AppContextType) => {
   const {
     ctx: { req },
@@ -63,8 +62,5 @@ MyApp.getInitialProps = (appCTX: AppContextType) => {
 
   return {
     cookies: req?.headers.cookie ?? '',
-    // Required as otherwise we'll run into 'cant read properties of undefined' errors
-    // when cold-loading pages that don't pre-fetch any data
-    pageProps: {},
   };
 };

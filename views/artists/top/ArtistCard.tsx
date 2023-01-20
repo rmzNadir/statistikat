@@ -30,8 +30,8 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
         <Card.Image
           src={artistProfilePicture.url}
           alt={`${name}} album art`}
-          width={320}
-          height={320}
+          width={250}
+          height={250}
           priority={shouldHavePriority}
           disableAnimation={shouldHavePriority}
         />

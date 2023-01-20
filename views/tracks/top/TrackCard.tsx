@@ -37,8 +37,8 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
         <Card.Image
           src={albumArt.url}
           alt={`${albumName} album art`}
-          width={albumArt.width}
-          height={albumArt.height}
+          width={albumArt.width / 1.25}
+          height={albumArt.height / 1.25}
           priority={shouldHavePriority}
           disableAnimation={shouldHavePriority}
         />

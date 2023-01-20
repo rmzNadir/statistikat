@@ -5,12 +5,16 @@ import { useInfiniteTopArtists } from '@hooks/queries/useTopArtists';
 import { ArtistCard } from './ArtistCard';
 
 export const TopArtists: FC = () => {
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteTopArtists();
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useInfiniteTopArtists();
 
   const pages = data?.pages ?? [];
 
   return (
-    <InfiniteScroll fetchMore={fetchNextPage} disabled={isFetchingNextPage}>
+    <InfiniteScroll
+      fetchMore={fetchNextPage}
+      disabled={isFetchingNextPage || !hasNextPage}
+    >
       <Grid>
         {pages.map((page) =>
           page.items.map((artist, itemIndex) => (
