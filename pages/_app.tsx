@@ -62,5 +62,8 @@ MyApp.getInitialProps = (appCTX: AppContextType) => {
 
   return {
     cookies: req?.headers.cookie ?? '',
+    // Required as otherwise we'll run into 'cant read properties of undefined' errors
+    // when cold-loading pages that don't pre-fetch any data
+    pageProps: {},
   };
 };
