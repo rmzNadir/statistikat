@@ -2,7 +2,6 @@ import { useColorModeValue } from '@chakra-ui/system';
 import { motion, useAnimation } from 'framer-motion';
 import { useCallback } from 'react';
 import { loadFull } from 'tsparticles';
-import type { Engine } from 'tsparticles-engine';
 import { getParticlesConfig } from '@config/particles';
 import { theme } from '@config/theme';
 import { StyledParticles } from './styles';
@@ -11,6 +10,8 @@ const animationVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
+
+type Engine = Parameters<typeof loadFull>['0'];
 
 export const Particles = () => {
   const animationControls = useAnimation();
