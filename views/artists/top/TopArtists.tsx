@@ -13,7 +13,8 @@ export const TopArtists: FC = () => {
   return (
     <InfiniteScroll
       fetchMore={fetchNextPage}
-      disabled={isFetchingNextPage || !hasNextPage}
+      disabled={!hasNextPage}
+      loading={isFetchingNextPage}
     >
       <Grid>
         {pages.map((page) =>
