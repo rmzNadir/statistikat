@@ -12,12 +12,46 @@ export const getGlassmorphism = (theme: Theme) => css`
 `;
 
 export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: ${({ theme }) => theme.space[2]};
+  justify-content: center;
+  width: 100%;
+
+  & > * {
+    min-height: 100%;
+    max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 6)`};
+    flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 6)`};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    & > * {
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 5)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 5)`};
+    }
+  }
+
+  @media (max-width: 70rem) {
+    & > * {
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 4)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 4)`};
+    }
+  }
+
+  @media (max-width: 60rem) {
+    & > * {
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 3)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 3)`};
+    }
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+
+    & > * {
+      max-width: unset;
+      flex: unset;
+    }
   }
 `;
 
