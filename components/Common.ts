@@ -26,22 +26,22 @@ export const Grid = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 5)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 5)`};
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 4) / 5)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 4) / 5)`};
     }
   }
 
   @media (max-width: 70rem) {
     & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 4)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 4)`};
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 3) / 4)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 3) / 4)`};
     }
   }
 
   @media (max-width: 60rem) {
     & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 3)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 3)`};
+      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 2) / 3)`};
+      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 2) / 3)`};
     }
   }
 
