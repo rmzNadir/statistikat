@@ -3,12 +3,19 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { hexToRgb } from '@utils/hexToRGB';
 
-export const getGlassmorphism = (theme: Theme) => css`
-  background: rgba(${hexToRgb(theme.colors.white).toString()}, 0.05);
+export const getGlassmorphism = (
+  theme: Theme,
+  bgColor: 'black' | 'white',
+) => css`
+  background: rgba(${hexToRgb(theme.colors[bgColor]).toString()}, 0.05);
   border-radius: ${theme.radii.md};
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
+`;
+
+const getDynamicFlexWith = (theme: Theme, noOfItems: number) => css`
+  max-width: calc((100% - ${theme.space[2]} * ${noOfItems - 1}) / ${noOfItems});
+  flex: 1 1 calc((100% - ${theme.space[2]} * ${noOfItems - 1}) / ${noOfItems});
 `;
 
 export const Grid = styled.div`
@@ -20,28 +27,18 @@ export const Grid = styled.div`
 
   & > * {
     min-height: 100%;
-    max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 5) / 6)`};
-    flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 5) / 6)`};
+    ${({ theme }) => getDynamicFlexWith(theme, 6)}
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 4) / 5)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 4) / 5)`};
-    }
-  }
-
-  @media (max-width: 70rem) {
-    & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 3) / 4)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 3) / 4)`};
+      ${({ theme }) => getDynamicFlexWith(theme, 4)}
     }
   }
 
   @media (max-width: 60rem) {
     & > * {
-      max-width: ${({ theme }) => `calc((100% - ${theme.space[2]} * 2) / 3)`};
-      flex: ${({ theme }) => `1 1 calc((100% - ${theme.space[2]} * 2) / 3)`};
+      ${({ theme }) => getDynamicFlexWith(theme, 3)}
     }
   }
 
@@ -64,4 +61,10 @@ export const ItemGrid = styled.div`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
   }
+`;
+
+export const SectionGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space[6]};
 `;

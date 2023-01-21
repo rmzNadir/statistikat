@@ -1,6 +1,5 @@
 import '@tools/wdyr';
 import '@config/baseCSS.css';
-import '@config/axios';
 import 'focus-visible/dist/focus-visible';
 import { ChakraProvider, cookieStorageManagerSSR } from '@chakra-ui/react';
 import { Global } from '@emotion/react';

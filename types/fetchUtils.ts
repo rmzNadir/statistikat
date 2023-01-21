@@ -8,6 +8,6 @@ export type FetchCB<RV> = (
 ) => Promise<RV>;
 
 export type CreateSSPPrefetch = <FetchReturnValue>(
-  queryName: string,
-  fetchCB: FetchCB<FetchReturnValue>,
+  queryName: string | string[],
+  fetchCB: FetchCB<FetchReturnValue> | FetchCB<unknown>[],
 ) => GetServerSideProps;

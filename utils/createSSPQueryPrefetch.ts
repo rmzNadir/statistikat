@@ -22,9 +22,23 @@ export const createSSPQueryPrefetch: CreateSSPPrefetch =
 
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery([queryName], (queryCTX) =>
-      fetchCB(session, queryCTX),
-    );
+    if (!Array.isArray(queryName) && !Array.isArray(fetchCB)) {
+      await queryClient.prefetchQuery([queryName], (queryCTX) =>
+        fetchCB(session, queryCTX),
+      );
+    } else if (Array.isArray(queryName) && Array.isArray(fetchCB)) {
+      await Promise.all(
+        queryName.map((name, i) =>
+          queryClient.prefetchQuery([name], (queryCTX) =>
+            fetchCB[i](session, queryCTX),
+          ),
+        ),
+      );
+    } else {
+      throw new Error(
+        'queryName and fetchCB must either arrays or not, they cannot have mixed types.',
+      );
+    }
 
     return {
       props: {

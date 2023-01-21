@@ -4,8 +4,6 @@ import { signIn, useSession } from 'next-auth/react';
 import type { FC, ReactNode } from 'react';
 import { useEffect } from 'react';
 
-import { AppNavigation } from '@components/app-layout/app-navigation';
-import { Particles } from '@components/particles';
 import { theme } from '@config/theme';
 import { AppFooter } from './app-footer';
 import { AppHeader } from './app-header';
@@ -51,11 +49,7 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
       <AppHeader />
       <LayoutMainContainer>
         <LayoutMain style={{ backgroundColor }}>
-          <AppNavigation />
-          <ChildrenContainer>
-            <Particles />
-            {children}
-          </ChildrenContainer>
+          <ChildrenContainer>{children}</ChildrenContainer>
         </LayoutMain>
       </LayoutMainContainer>
       <AppFooter />

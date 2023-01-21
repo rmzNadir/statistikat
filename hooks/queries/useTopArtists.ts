@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { Session } from 'next-auth';
 import { createInfiniteQueryHook } from '@utils/createInfiniteQueryHook';
 import { createQueryHook } from '@utils/createQueryHook';
+import { setup } from '@utils/pageParamOptimizer';
 import type { Artist } from 'types/spotify';
 
 interface TopArtistsReponse {
@@ -34,20 +35,25 @@ export const useTopArtists = createQueryHook({
   select: (res) => res.items,
 });
 
+const pageParamOptimizer = setup({
+  initialItems: 12,
+  path: '/top/artists',
+});
+
 export const getInfiniteTopArtists = async (
   session: Session,
   ctx: QueryFunctionContext,
 ) => {
   const { pageParam: url } = ctx;
 
-  // pageParam is null for the first page
-  const safeURL = url ?? '/top/artists?limit=49&time_range=long_term';
-
-  const { data } = await axios.get<TopArtistsReponse>(safeURL, {
-    headers: {
-      Authorization: `Bearer ${session.user.accessToken}`,
+  const { data } = await axios.get<TopArtistsReponse>(
+    pageParamOptimizer.getSafeURL(url),
+    {
+      headers: {
+        Authorization: `Bearer ${session.user.accessToken}`,
+      },
     },
-  });
+  );
 
   return data;
 };
@@ -56,17 +62,5 @@ export const useInfiniteTopArtists = createInfiniteQueryHook({
   queryKey: ['topArtists'],
   queryFn: getInfiniteTopArtists,
   getPreviousPageParam: ({ next }) => next ?? undefined,
-  getNextPageParam: ({ next }) => {
-    if (!next) {
-      return undefined;
-    }
-
-    const url = new URL(next);
-
-    if (url.searchParams.has('offset')) {
-      url.searchParams.set('limit', '50');
-    }
-
-    return url.toString();
-  },
+  getNextPageParam: pageParamOptimizer.getOptimizedNextPageParam,
 });

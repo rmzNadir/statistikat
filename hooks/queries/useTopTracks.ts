@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { Session } from 'next-auth';
 import { createInfiniteQueryHook } from '@utils/createInfiniteQueryHook';
 import { createQueryHook } from '@utils/createQueryHook';
+import { setup } from '@utils/pageParamOptimizer';
 import type { Track } from 'types/spotify';
 
 interface TopTracksReponse {
@@ -34,20 +35,25 @@ export const useTopTracks = createQueryHook({
   select: (res) => res.items,
 });
 
+const pageParamOptimizer = setup({
+  initialItems: 12,
+  path: '/top/tracks',
+});
+
 export const getInfiniteTopTracks = async (
   session: Session,
   ctx: QueryFunctionContext,
 ) => {
   const { pageParam: url } = ctx;
 
-  // pageParam is null for the first page
-  const safeURL = url ?? '/top/tracks?limit=49&time_range=long_term';
-
-  const { data } = await axios.get<TopTracksReponse>(safeURL, {
-    headers: {
-      Authorization: `Bearer ${session.user.accessToken}`,
+  const { data } = await axios.get<TopTracksReponse>(
+    pageParamOptimizer.getSafeURL(url),
+    {
+      headers: {
+        Authorization: `Bearer ${session.user.accessToken}`,
+      },
     },
-  });
+  );
 
   return data;
 };
@@ -56,17 +62,5 @@ export const useInfiniteTopTracks = createInfiniteQueryHook({
   queryKey: ['topTracks'],
   queryFn: getInfiniteTopTracks,
   getPreviousPageParam: ({ next }) => next ?? undefined,
-  getNextPageParam: ({ next }) => {
-    if (!next) {
-      return undefined;
-    }
-
-    const url = new URL(next);
-
-    if (url.searchParams.has('offset')) {
-      url.searchParams.set('limit', '50');
-    }
-
-    return url.toString();
-  },
+  getNextPageParam: pageParamOptimizer.getOptimizedNextPageParam,
 });

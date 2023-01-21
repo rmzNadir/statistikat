@@ -5,7 +5,8 @@ import NextImage from 'next/image';
 import { getGlassmorphism } from '@components/Common';
 
 export const BaseCard = styled(Box)`
-  ${({ theme }) => getGlassmorphism(theme)}
+  ${({ theme, bgColor }) =>
+    getGlassmorphism(theme, bgColor as 'black' | 'white')}
   padding: ${({ theme }) => theme.space[4]};
   display: flex;
   flex-direction: column;

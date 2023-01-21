@@ -32,6 +32,7 @@
     "react-fast-compare": "3.2.0",
     "react-infinite-scroll-component": "6.1.0",
     "react-tsparticles": "2.7.1",
+    "react-use-measure": "2.1.1",
     "tabler-icons-react": "1.56.0",
     "tsparticles": "2.7.1"
   },

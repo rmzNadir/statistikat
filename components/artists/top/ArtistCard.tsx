@@ -1,6 +1,5 @@
-import { Center } from '@chakra-ui/react';
+import { Center, useColorModeValue } from '@chakra-ui/react';
 import type { FC } from 'react';
-import React from 'react';
 import { Card } from '@components/card';
 import { ItemGrid } from '@components/Common';
 import { Media } from '@components/Media';
@@ -18,15 +17,15 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
 
   const artistProfilePicture = images[1];
 
-  // Preload first 10 images
-  const shouldHavePriority = rank < 11;
+  // Preload first 12 images
+  const shouldHavePriority = rank < 13;
 
   return (
     <ItemGrid>
       <Media lessThan="md">
         <MobileRank rank={rank} />
       </Media>
-      <Card>
+      <Card bgColor={useColorModeValue('black', 'white')}>
         <Card.Image
           src={artistProfilePicture.url}
           alt={`${name}} album art`}
