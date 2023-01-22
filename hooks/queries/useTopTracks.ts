@@ -35,8 +35,10 @@ export const useTopTracks = createQueryHook({
   select: (res) => res.items,
 });
 
+export const PREFETCHED_ITEM_COUNT = 12;
+
 const pageParamOptimizer = setup({
-  initialItems: 12,
+  initialItems: PREFETCHED_ITEM_COUNT,
   path: '/top/tracks',
 });
 

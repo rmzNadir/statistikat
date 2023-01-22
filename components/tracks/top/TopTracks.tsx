@@ -2,8 +2,13 @@ import type { FC } from 'react';
 import { Grid } from '@components/Common';
 import { InfiniteScroll } from '@components/InfiniteScroll';
 import { Section } from '@components/section';
-import { useInfiniteTopTracks } from '@hooks/queries/useTopTracks';
+import {
+  PREFETCHED_ITEM_COUNT,
+  useInfiniteTopTracks,
+} from '@hooks/queries/useTopTracks';
 import { TrackCard } from './TrackCard';
+
+const GRID_ID = 'top-tracks-grid';
 
 export const TopTracks: FC = () => {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
@@ -12,7 +17,11 @@ export const TopTracks: FC = () => {
   const pages = data?.pages ?? [];
 
   return (
-    <Section title="Top Tracks" gridId="top-tracks-grid">
+    <Section
+      mainItemCount={PREFETCHED_ITEM_COUNT}
+      title="Top Tracks"
+      gridId={GRID_ID}
+    >
       <InfiniteScroll
         fetchMore={fetchNextPage}
         disabled={!hasNextPage}
@@ -20,7 +29,7 @@ export const TopTracks: FC = () => {
         fetchMoreOnMount
         disableLoadingOnMountFetch
       >
-        <Grid id="top-tracks-grid">
+        <Grid id={GRID_ID}>
           {pages.map((page) =>
             page.items.map((track, itemIndex) => (
               <TrackCard

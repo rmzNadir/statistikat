@@ -20,14 +20,20 @@ interface Props {
   title: string;
   children: ReactNode;
   gridId: string;
+  mainItemCount: number;
 }
 
-export const Section: FC<Props> = ({ children, title, gridId }) => {
+export const Section: FC<Props> = ({
+  children,
+  title,
+  gridId,
+  mainItemCount,
+}) => {
   const animationControls = useAnimation();
   const [isOpen, setIsOpen] = useState(false);
   const [setContainerRef, containerBounds] = useMeasure();
   const [setFirstMainItemRef, firstMainItemBounds] = useMeasure();
-  const [setLasMainItemRef, lastMainItemBounds] = useMeasure();
+  const [setLastMainItemRef, lastMainItemBounds] = useMeasure();
   const [isAnimatingUserAction, setIsAnimatingUserAction] = useState(false);
 
   const safeMaxHeight = getSafeHeight(containerBounds.height);
@@ -41,17 +47,10 @@ export const Section: FC<Props> = ({ children, title, gridId }) => {
       return;
     }
 
-    if (isOpen) {
-      animationControls.start({
-        height: safeMaxHeight,
-        transition: { duration: 0 },
-      });
-    } else {
-      animationControls.start({
-        height: safeMinHeight,
-        transition: { duration: 0 },
-      });
-    }
+    animationControls.start({
+      height: isOpen ? safeMaxHeight : safeMinHeight,
+      transition: { duration: 0 },
+    });
   }, [safeMaxHeight, safeMinHeight, animationControls, isOpen]);
 
   const handleToggleIsOpen = () => {
@@ -60,19 +59,11 @@ export const Section: FC<Props> = ({ children, title, gridId }) => {
     setIsAnimatingUserAction(true);
     setIsOpen(isOpening);
 
-    if (isOpening) {
-      animationControls
-        .start({
-          height: safeMaxHeight,
-        })
-        .finally(() => setIsAnimatingUserAction(false));
-    } else {
-      animationControls
-        .start({
-          height: safeMinHeight,
-        })
-        .finally(() => setIsAnimatingUserAction(false));
-    }
+    animationControls
+      .start({
+        height: isOpening ? safeMaxHeight : safeMinHeight,
+      })
+      .finally(() => setIsAnimatingUserAction(false));
   };
 
   return (
@@ -99,8 +90,10 @@ export const Section: FC<Props> = ({ children, title, gridId }) => {
             if (grid?.children[0]) {
               setFirstMainItemRef(grid.children[0] as HTMLElement);
             }
-            if (grid?.children[11]) {
-              setLasMainItemRef(grid.children[11] as HTMLElement);
+            if (grid?.children[mainItemCount - 1]) {
+              setLastMainItemRef(
+                grid.children[mainItemCount - 1] as HTMLElement,
+              );
             }
           }}
         >
