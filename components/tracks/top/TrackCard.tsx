@@ -8,6 +8,7 @@ import { Link } from '@components/link';
 import { Media } from '@components/Media';
 import { MobileRank } from '@components/mobile-rank';
 import { TruncatedText } from '@components/TruncatedText';
+import { PREFETCHED_ITEM_COUNT } from '@hooks/queries/useTopTracks';
 import type { Track } from 'types/spotify';
 
 interface Props {
@@ -24,8 +25,7 @@ export const TrackCard: FC<Props> = ({ track, rank }) => {
 
   const secondaryTextColor = useColorModeValue('gray.900', 'gray.300');
 
-  // Preload first 12 images
-  const shouldHavePriority = rank < 13;
+  const shouldHavePriority = rank <= PREFETCHED_ITEM_COUNT;
 
   return (
     <ItemGrid>

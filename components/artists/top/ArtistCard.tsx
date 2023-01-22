@@ -5,6 +5,7 @@ import { ItemGrid } from '@components/Common';
 import { Media } from '@components/Media';
 import { MobileRank } from '@components/mobile-rank';
 import { TruncatedText } from '@components/TruncatedText';
+import { PREFETCHED_ITEM_COUNT } from '@hooks/queries/useTopArtists';
 import type { Artist } from 'types/spotify';
 
 interface Props {
@@ -17,8 +18,7 @@ export const ArtistCard: FC<Props> = ({ artist, rank }) => {
 
   const artistProfilePicture = images[1];
 
-  // Preload first 12 images
-  const shouldHavePriority = rank < 13;
+  const shouldHavePriority = rank <= PREFETCHED_ITEM_COUNT;
 
   return (
     <ItemGrid>

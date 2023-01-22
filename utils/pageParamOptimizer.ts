@@ -35,9 +35,9 @@ export const setup = ({ initialItems, path }: SetupSettings) => {
 
     const url = new URL(next);
 
-    // We prefetch the first 10 items to make initial page load fast, after page load
-    // we fetch the next 39 items in the background, and then we fetch 50 items if the
-    // user scrolls over 70% of the visible items (see useInfiniteScroll component)
+    // We prefetch the first <currPageLimit> items to make initial page load fast, after page load
+    // we fetch the next <49 - currPageLimit> items in the background, and then we fetch the last 50 items
+    // if the user scrolls over 70% of the visible items (see useInfiniteScroll component)
     if (currPageLimit === initialItems) {
       url.searchParams.set('limit', (49 - currPageLimit).toString());
     } else {
