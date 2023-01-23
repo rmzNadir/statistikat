@@ -4,9 +4,12 @@ import {
   withDefaultColorScheme,
 } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import { Inter } from '@next/font/google';
+import { Poppins } from '@next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 
 export const GlobalStyles = css`
   /*
