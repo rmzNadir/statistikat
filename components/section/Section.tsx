@@ -1,10 +1,10 @@
-import { Heading, IconButton } from '@chakra-ui/react';
+import { Center, Heading } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import useMeasure from 'react-use-measure';
-import { ArrowsMaximize, ArrowsMinimize } from 'tabler-icons-react';
-import { Icon } from '@components/Icon';
+import { LinkButton } from '@components/LinkButton';
+import { Media } from '@components/Media';
 import { useSafeLayoutEffect } from '@hooks/useSafeLayoutEffect';
 import { SectionContainer, SectionTitle } from './styles';
 
@@ -70,11 +70,11 @@ export const Section: FC<Props> = ({
     <SectionContainer>
       <SectionTitle>
         <Heading size="lg">{title}</Heading>
-        <IconButton
-          aria-label="Expand section"
-          icon={<Icon as={isOpen ? ArrowsMinimize : ArrowsMaximize} />}
-          onClick={handleToggleIsOpen}
-        />
+        <Media greaterThanOrEqual="md">
+          <LinkButton onClick={handleToggleIsOpen}>
+            {isOpen ? 'collapse' : 'show all'}
+          </LinkButton>
+        </Media>
       </SectionTitle>
       <motion.div
         animate={animationControls}
@@ -100,6 +100,13 @@ export const Section: FC<Props> = ({
           {children}
         </div>
       </motion.div>
+      <Media lessThan="md">
+        <Center pb="1">
+          <LinkButton onClick={handleToggleIsOpen}>
+            {isOpen ? 'collapse' : 'show all'}
+          </LinkButton>
+        </Center>
+      </Media>
     </SectionContainer>
   );
 };
