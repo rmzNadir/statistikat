@@ -1,0 +1,1 @@
+export { TopGenres } from './TopGenres';

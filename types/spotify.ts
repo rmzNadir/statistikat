@@ -65,3 +65,23 @@ export interface Track {
   type: string;
   uri: string;
 }
+
+export interface TopArtistsReponse {
+  items: Required<Artist>[];
+  total: number;
+  limit: number;
+  offset: number;
+  previous: string | null;
+  href: string;
+  next: string | null;
+}
+
+export interface TopTracksReponse {
+  items: Track[];
+  total: number;
+  limit: number;
+  offset: number;
+  previous: string | null;
+  href: string;
+  next: string | null;
+}

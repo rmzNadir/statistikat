@@ -19,8 +19,8 @@ const getSafeHeight = (height: number) => {
 interface Props {
   title: string;
   children: ReactNode;
-  gridId: string;
-  mainItemCount: number;
+  gridId?: string;
+  mainItemCount?: number;
 }
 
 export const Section: FC<Props> = ({
@@ -42,8 +42,10 @@ export const Section: FC<Props> = ({
     lastMainItemBounds.bottom - firstMainItemBounds.top,
   );
 
+  const isVerticalResizeDisabled = !gridId || !mainItemCount;
+
   useSafeLayoutEffect(() => {
-    if (isAnimatingUserAction) {
+    if (isAnimatingUserAction || isVerticalResizeDisabled) {
       return;
     }
 
@@ -51,7 +53,14 @@ export const Section: FC<Props> = ({
       height: isOpen ? safeMaxHeight : safeMinHeight,
       transition: { duration: 0 },
     });
-  }, [safeMaxHeight, safeMinHeight, animationControls, isOpen]);
+  }, [
+    isAnimatingUserAction,
+    isVerticalResizeDisabled,
+    animationControls,
+    isOpen,
+    safeMaxHeight,
+    safeMinHeight,
+  ]);
 
   const handleToggleIsOpen = () => {
     const isOpening = !isOpen;
@@ -70,11 +79,13 @@ export const Section: FC<Props> = ({
     <SectionContainer>
       <SectionTitle>
         <Heading size="lg">{title}</Heading>
-        <Media greaterThanOrEqual="md">
-          <LinkButton onClick={handleToggleIsOpen}>
-            {isOpen ? 'collapse' : 'show all'}
-          </LinkButton>
-        </Media>
+        {mainItemCount && gridId && (
+          <Media greaterThanOrEqual="md">
+            <LinkButton onClick={handleToggleIsOpen}>
+              {isOpen ? 'collapse' : 'show all'}
+            </LinkButton>
+          </Media>
+        )}
       </SectionTitle>
       <motion.div
         animate={animationControls}
@@ -83,6 +94,8 @@ export const Section: FC<Props> = ({
       >
         <div
           ref={(ref) => {
+            if (!gridId || !mainItemCount) return;
+
             setContainerRef(ref);
 
             // Lord forgive me for what I'm about to do
@@ -101,11 +114,13 @@ export const Section: FC<Props> = ({
         </div>
       </motion.div>
       <Media lessThan="md">
-        <Center pb="1">
-          <LinkButton onClick={handleToggleIsOpen}>
-            {isOpen ? 'collapse' : 'show all'}
-          </LinkButton>
-        </Center>
+        {mainItemCount && gridId && (
+          <Center pb="1">
+            <LinkButton onClick={handleToggleIsOpen}>
+              {isOpen ? 'collapse' : 'show all'}
+            </LinkButton>
+          </Center>
+        )}
       </Media>
     </SectionContainer>
   );

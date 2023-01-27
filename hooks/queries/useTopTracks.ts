@@ -4,17 +4,7 @@ import type { Session } from 'next-auth';
 import { createInfiniteQueryHook } from '@utils/createInfiniteQueryHook';
 import { createQueryHook } from '@utils/createQueryHook';
 import { setup } from '@utils/pageParamOptimizer';
-import type { Track } from 'types/spotify';
-
-interface TopTracksReponse {
-  items: Track[];
-  total: number;
-  limit: number;
-  offset: number;
-  previous: string | null;
-  href: string;
-  next: string | null;
-}
+import type { TopTracksReponse } from 'types/spotify';
 
 export const getAllTopTracks = async (session: Session) => {
   const { data } = await axios.get<TopTracksReponse>(

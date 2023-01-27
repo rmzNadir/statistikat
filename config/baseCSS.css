@@ -40,7 +40,11 @@ html[data-theme='dark'] {
   background-color: var(--scrollbar-thumb-hover-color);
 }
 
-// Color looks wonky when using color prop on the component for some reason
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Color looks wonky when using color prop on the component for some reason */
 #nprogress .peg {
   box-shadow: 0 0 10px var(--primary-color), 0 0 5px var(--primary-color) !important;
 }
